@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Page not found — MD Mehedi Hasan Sarkar</title>
+  <style>
+    :root {
+      --paper: oklch(99% 0.003 255);
+      --ink: oklch(16% 0.010 255);
+      --muted: oklch(43% 0.018 255);
+      --rule: oklch(86% 0.012 255);
+      --accent: oklch(43% 0.19 264);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: var(--paper); color: var(--ink); font-family: Arial, sans-serif; }
+    body { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+    main { width: min(100%, 760px); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 48px 0; }
+    .code { color: var(--accent); font-size: clamp(5rem, 20vw, 11rem); font-weight: 800; line-height: .75; letter-spacing: -.08em; }
+    h1 { margin: 32px 0 12px; font-size: clamp(2rem, 6vw, 4rem); line-height: .95; letter-spacing: -.05em; text-transform: lowercase; }
+    p { max-width: 52ch; color: var(--muted); line-height: 1.6; }
+    a { display: inline-flex; min-height: 44px; align-items: center; margin-top: 16px; color: var(--ink); font-weight: 700; text-underline-offset: 4px; }
+    a:hover { color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="code" aria-hidden="true">404</div>
+    <h1>this route doesn’t exist.</h1>
+    <p>The portfolio is still here. Return to the main page to continue through the selected work and experience.</p>
+    <a id="home-link" href="/">back to portfolio ↗</a>
+  </main>
+  <script>
+    const home = location.hostname.endsWith('github.io') ? '/mhsarkar-portfolio/' : '/';
+    document.getElementById('home-link').href = home;
+  </script>
+</body>
+</html>

@@ -56,3 +56,20 @@ The following projects are explicitly associated with the Wizard Software & Tech
 - Perfecto
 - ExamBuzz
 - Educity Learner
+
+
+## GitHub Pages
+
+The repository includes a GitHub Pages deployment workflow at `.github/workflows/pages.yml`.
+
+One-time GitHub setup:
+
+1. Open **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Pushes to `main` will then deploy automatically.
+
+Expected project-site URL:
+
+`https://mh-sarkar-official.github.io/mhsarkar-portfolio/`
+
+The repository also includes `.nojekyll` and a branded `404.html`.
