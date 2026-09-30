@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-30",
+  "project": "mhsarkar-portfolio",
+  "framework": "static HTML/CSS/JS",
+  "design_md": false,
+  "signals": {
+    "initial_repository_state": "empty",
+    "target_positioning": "Flutter + Applied AI Product Engineering",
+    "motion": "restrained; transform/color only",
+    "spacing": "4pt-derived named scale",
+    "typography": "Archivo"
+  }
+}
