@@ -721,3 +721,148 @@ button { font: inherit; }
     transition-delay: 0ms !important;
   }
 }
+
+/* Hallmark · 2026-10-01 refinement
+ * Portrait is treated as authored identity content, not decorative chrome.
+ * Experience hierarchy: four primary employers + one compact earlier-roles row.
+ */
+.hero {
+  min-height: min(48rem, calc(100vh - 4.5rem));
+}
+
+.hero-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s12);
+  align-items: end;
+  margin-top: var(--s12);
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-copy h1 {
+  margin: 0 0 var(--s8);
+}
+
+.hero-copy > p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+}
+
+.hero-copy .hero-links {
+  margin-top: var(--s8);
+}
+
+.hero-portrait {
+  min-width: 0;
+  margin: 0;
+  border-top: 3px solid var(--accent);
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper-2);
+}
+
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 27%;
+  background: var(--paper-2);
+}
+
+.hero-portrait figcaption {
+  display: grid;
+  gap: var(--s1);
+  padding-block: var(--s3);
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+
+.hero-portrait figcaption span:first-child {
+  color: var(--ink);
+}
+
+.timeline article {
+  min-width: 0;
+}
+
+.timeline article.is-compact {
+  background: var(--paper-2);
+}
+
+.timeline article.is-compact h3,
+.timeline article.is-compact strong {
+  color: var(--ink-2);
+}
+
+.compact-role-list {
+  color: var(--ink-2) !important;
+  font-weight: 600;
+}
+
+@media (max-width: 39.99rem) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--s8) var(--s16);
+  }
+
+  .hero-stage {
+    gap: var(--s8);
+    margin-top: var(--s8);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 15vw, 4.5rem);
+    max-width: 12ch;
+  }
+
+  .project {
+    min-height: 0;
+    padding: var(--s6) var(--s4);
+  }
+
+  .timeline article {
+    padding-block: var(--s6);
+  }
+}
+
+@media (min-width: 48rem) {
+  .hero-stage {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: var(--s8);
+  }
+
+  .hero-copy {
+    padding-bottom: var(--s4);
+  }
+
+  .hero-portrait {
+    align-self: end;
+  }
+
+  .hero-portrait figcaption {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project {
+    min-height: 28rem;
+  }
+}
+
+@media (min-width: 72rem) {
+  .hero-stage {
+    gap: var(--s12);
+  }
+
+  .hero-copy h1 {
+    max-width: 11ch;
+  }
+}
