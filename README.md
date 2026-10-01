@@ -10,11 +10,12 @@ The portfolio intentionally leads with the projects that best demonstrate curren
 2. **DIA AI** — conversational AI + structured health tracking
 3. **Exam Intelligence** — document workflows + AI assessment insight
 4. **Rangs Assistant** — enterprise AI, Qwen, Oracle and NL2SQL
-5. **WellSnap** — OCR / computer vision applied to health-device readings
-6. **ExamBuzz** — exam preparation and OMR-based learning platform developed at Wizard Software & Technology
-7. **Shawpno Instamart** — production consumer quick-commerce UX
-8. **Perfecto** — e-commerce mobile application developed at Wizard Software & Technology
-9. **Educity Learner** — education and learning application developed at Wizard Software & Technology
+5. **Pensioner Verification** — Bangladesh Government pension-services app with 500K+ Google Play downloads
+6. **WellSnap** — OCR / computer vision applied to health-device readings
+7. **ExamBuzz** — exam preparation and OMR-based learning platform developed at Wizard Software & Technology
+8. **Shawpno Instamart** — production consumer quick-commerce UX
+9. **Perfecto** — e-commerce mobile application developed at Wizard Software & Technology
+10. **Educity Learner** — education and learning application developed at Wizard Software & Technology
 
 Real-time tracking, ERP integration, Firebase, sockets and broader Flutter delivery remain visible through the experience and technical sections without competing with the highest-signal AI/mobile work.
 
