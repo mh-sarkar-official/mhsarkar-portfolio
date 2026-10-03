@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-10-03",
+    "macrostructure": "Portfolio Grid",
+    "theme": "Grid",
+    "theme_axes": "cool near-white / Archivo grotesk / ultramarine signal",
+    "enrichment": "GSAP + ScrollTrigger + Flip motion system",
+    "brief": "Added restrained hero/section reveals, filter reflow animation, micro-interactions, 60fps transform/opacity discipline and reduced-motion gating"
+  },
+  {
     "date": "2026-10-01",
     "macrostructure": "Portfolio Grid",
     "theme": "Grid",

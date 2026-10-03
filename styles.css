@@ -711,14 +711,32 @@ button { font: inherit; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto !important; }
 
   *,
   *::before,
   *::after {
-    animation: none !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
     transition-delay: 0ms !important;
+  }
+
+  .filter,
+  .hero-links a,
+  .contact-links a,
+  .publication a,
+  .project-link,
+  .site-footer a {
+    transition: color 150ms ease, background-color 150ms ease !important;
+  }
+
+  .project:hover h3,
+  .hero-links a:hover,
+  .contact-links a:hover,
+  .publication a:hover,
+  .project-link:hover {
+    transform: none !important;
   }
 }
 
@@ -890,4 +908,29 @@ button { font: inherit; }
 .project-link:focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
+}
+
+
+/* Motion system · iart web-animation-skills
+ * Functional motion only: transform + opacity, no smooth-scroll hijacking.
+ */
+.project,
+.hero-portrait,
+.timeline article,
+.stack-grid > div,
+.publication > *,
+.contact > * {
+  transform-origin: center center;
+}
+
+.filter {
+  transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-enhanced .project,
+  .motion-enhanced .hero-portrait,
+  .motion-enhanced .filter {
+    backface-visibility: hidden;
+  }
 }

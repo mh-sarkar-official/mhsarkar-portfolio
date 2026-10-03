@@ -74,3 +74,19 @@ Expected project-site URL:
 `https://mh-sarkar-official.github.io/mhsarkar-portfolio/`
 
 The repository also includes `.nojekyll` and a branded `404.html`.
+
+
+## Motion system
+
+Motion is layered on top of the Hallmark grid using the iart web-animation discipline:
+
+- GSAP timeline for the hero entrance
+- ScrollTrigger for restrained section/project reveals
+- GSAP Flip for project-filter layout transitions
+- Transform/opacity-first animation for compositor-friendly performance
+- Short 100–250ms micro-interactions for buttons and hover feedback
+- No Lenis or scroll hijacking
+- No glassmorphism, WebGL, Lottie decoration or autoplay media
+- `prefers-reduced-motion` disables spatial movement while preserving essential color/state feedback
+
+The runtime loads GSAP, ScrollTrigger and Flip from jsDelivr; the site remains fully usable if those scripts fail to load.
