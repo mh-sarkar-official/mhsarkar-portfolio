@@ -74,16 +74,3 @@ Expected project-site URL:
 `https://mh-sarkar-official.github.io/mhsarkar-portfolio/`
 
 The repository also includes `.nojekyll` and a branded `404.html`.
-
-
-## Scroll World layer
-
-The portfolio includes a lightweight Hallmark × Scroll World hybrid before the detailed project grid.
-
-- One continuous SVG world, not disconnected slides
-- Scroll drives camera travel across four story beats
-- No paid/video rendering dependency
-- No autoplay media
-- Mobile responsive
-- `prefers-reduced-motion` falls back to a static, fully readable presentation
-- Detailed Hallmark project grid remains the primary evidence layer

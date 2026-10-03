@@ -1,13 +1,5 @@
 [
   {
-    "date": "2026-10-03",
-    "macrostructure": "Portfolio Grid + Scroll World intro",
-    "theme": "Grid",
-    "theme_axes": "cool near-white / Archivo grotesk / ultramarine signal",
-    "enrichment": "single continuous authored SVG engineering world with scroll-driven camera",
-    "brief": "Integrated a lightweight Scroll World journey without external video-generation or runtime dependencies"
-  },
-  {
     "date": "2026-10-01",
     "macrostructure": "Portfolio Grid",
     "theme": "Grid",
