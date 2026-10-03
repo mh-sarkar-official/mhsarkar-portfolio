@@ -891,3 +891,293 @@ button { font: inherit; }
   outline: 2px solid var(--focus);
   outline-offset: 3px;
 }
+
+
+/* Hallmark × Scroll World hybrid
+ * Continuous illustrated world; scroll drives camera position.
+ * No autoplay video, no external render dependency, no gradients.
+ */
+.world-journey {
+  position: relative;
+  z-index: 2;
+  height: 430vh;
+  background: var(--paper);
+  border-bottom: 2px solid var(--ink);
+}
+
+.world-sticky {
+  position: sticky;
+  top: 4.5rem;
+  height: calc(100vh - 4.5rem);
+  min-height: 38rem;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.world-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.world-map {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: auto;
+  height: min(86vh, 58rem);
+  max-width: none;
+  transform: translate3d(0, -50%, 0) scale(1.02);
+  transform-origin: 50% 50%;
+  will-change: transform;
+  user-select: none;
+  pointer-events: none;
+}
+
+.world-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.world-ui {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-block: var(--s6);
+  pointer-events: none;
+}
+
+.world-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s6);
+  align-items: center;
+  color: var(--ink-2);
+}
+
+.world-topline p {
+  margin: 0;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.world-progress {
+  width: min(32vw, 22rem);
+  height: 3px;
+  background: var(--rule);
+  overflow: hidden;
+}
+
+.world-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.world-copy-stack {
+  position: relative;
+  align-self: end;
+  min-height: 17rem;
+  margin-bottom: var(--s8);
+}
+
+.world-copy {
+  position: absolute;
+  inset: auto auto 0 0;
+  width: min(38rem, 82vw);
+  padding: var(--s6);
+  border-left: 4px solid var(--accent);
+  background: var(--paper);
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity var(--base) var(--ease), transform var(--base) var(--ease);
+  pointer-events: none;
+}
+
+.world-copy.is-active {
+  opacity: .97;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.world-copy > span {
+  display: block;
+  margin-bottom: var(--s3);
+  color: var(--accent);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.world-copy h2 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.7rem, 6vw, 5.8rem);
+  line-height: .88;
+  letter-spacing: -.055em;
+  text-transform: lowercase;
+}
+
+.world-copy p {
+  max-width: 54ch;
+  margin: var(--s4) 0 0;
+  color: var(--ink-2);
+  font-size: 1rem;
+}
+
+.world-copy a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--s4);
+  color: var(--ink);
+  font-weight: 700;
+  text-underline-offset: 4px;
+  pointer-events: auto;
+}
+
+.world-copy a:hover {
+  color: var(--accent);
+}
+
+.world-dots {
+  display: flex;
+  gap: var(--s3);
+  align-items: center;
+  pointer-events: auto;
+}
+
+.world-dots button {
+  width: 2.5rem;
+  height: .72rem;
+  padding: 0;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  cursor: pointer;
+}
+
+.world-dots button.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.world-dots button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (max-width: 47.99rem) {
+  .world-journey {
+    height: 360vh;
+  }
+
+  .world-sticky {
+    top: 4.5rem;
+    min-height: 34rem;
+  }
+
+  .world-map {
+    height: 72vh;
+    top: 42%;
+  }
+
+  .world-ui {
+    padding-block: var(--s4);
+  }
+
+  .world-topline {
+    align-items: flex-start;
+  }
+
+  .world-progress {
+    width: 34vw;
+  }
+
+  .world-copy-stack {
+    min-height: 18rem;
+    margin-bottom: var(--s4);
+  }
+
+  .world-copy {
+    width: calc(100% - var(--s8));
+    padding: var(--s4);
+  }
+
+  .world-copy h2 {
+    font-size: clamp(2.35rem, 12vw, 4rem);
+  }
+
+  .world-copy p {
+    font-size: .94rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world-journey {
+    height: auto;
+    padding-block: var(--s12);
+  }
+
+  .world-sticky {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .world-viewport {
+    position: relative;
+    aspect-ratio: 16 / 8;
+    border-block: 1px solid var(--rule);
+  }
+
+  .world-map {
+    top: 50%;
+    left: 0;
+    height: 100%;
+    transform: translate3d(-22%, -50%, 0) scale(.9) !important;
+  }
+
+  .world-ui {
+    display: block;
+    height: auto;
+    padding-top: var(--s8);
+  }
+
+  .world-topline,
+  .world-dots {
+    display: none;
+  }
+
+  .world-copy-stack {
+    display: grid;
+    gap: var(--s4);
+    min-height: 0;
+    margin: 0;
+  }
+
+  .world-copy {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    border-top: 1px solid var(--rule);
+  }
+
+  .world-copy h2 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+}
