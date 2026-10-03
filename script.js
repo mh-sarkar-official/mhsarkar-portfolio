@@ -294,6 +294,8 @@ function initPortfolioMotion() {
         }
       });
 
+      const hoverCleanups = [];
+
       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         projects.forEach((project) => {
           const enter = () => gsap.to(project, {
@@ -313,7 +315,7 @@ function initPortfolioMotion() {
           project.addEventListener('pointerenter', enter);
           project.addEventListener('pointerleave', leave);
 
-          context.add(() => {
+          hoverCleanups.push(() => {
             project.removeEventListener('pointerenter', enter);
             project.removeEventListener('pointerleave', leave);
           });
@@ -321,6 +323,10 @@ function initPortfolioMotion() {
       }
 
       ScrollTrigger.refresh();
+
+      return () => {
+        hoverCleanups.forEach((cleanup) => cleanup());
+      };
     }
   );
 
