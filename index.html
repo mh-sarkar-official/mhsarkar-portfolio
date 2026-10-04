@@ -37,28 +37,32 @@
       <div class="cinematic-stage">
         <img
           class="cinematic-poster"
-          src="assets/scroll-world/portfolio-cinematic-poster.webp"
+          src="assets/scroll-world/cinematic-poster.webp"
           alt=""
           width="1280"
           height="720"
           decoding="async"
           fetchpriority="high"
         >
-        <video
-          class="cinematic-video"
-          data-src="assets/scroll-world/portfolio-cinematic.mp4"
-          muted
-          playsinline
-          preload="none"
-          poster="assets/scroll-world/portfolio-cinematic-poster.webp"
-          aria-hidden="true"
-        ></video>
+
+        <div class="cinematic-media" aria-hidden="true">
+          <video class="cinematic-video is-active" data-cinematic-clip="0" data-src="assets/scroll-world/01-mobile.mp4" muted playsinline preload="none"></video>
+          <video class="cinematic-video" data-cinematic-clip="1" data-src="assets/scroll-world/02-ai-transition.mp4" muted playsinline preload="none"></video>
+          <video class="cinematic-video" data-cinematic-clip="2" data-src="assets/scroll-world/03-applied-ai.mp4" muted playsinline preload="none"></video>
+          <video class="cinematic-video" data-cinematic-clip="3" data-src="assets/scroll-world/04-enterprise.mp4" muted playsinline preload="none"></video>
+          <video class="cinematic-video" data-cinematic-clip="4" data-src="assets/scroll-world/05-public-scale.mp4" muted playsinline preload="none"></video>
+          <video class="cinematic-video" data-cinematic-clip="5" data-src="assets/scroll-world/06-handoff.mp4" muted playsinline preload="none"></video>
+        </div>
+
         <div class="cinematic-wash" aria-hidden="true"></div>
 
         <div class="cinematic-overlay shell">
           <div class="cinematic-topline">
             <span>scroll through the systems</span>
-            <span>mobile → ai → enterprise → public scale</span>
+            <div class="cinematic-top-actions">
+              <span>mobile → ai → enterprise → public scale</span>
+              <a class="cinematic-skip" href="#hero">skip cinematic ↓</a>
+            </div>
           </div>
 
           <div class="cinematic-copy-stack">
@@ -101,7 +105,7 @@
       </div>
     </section>
 
-    <section class="hero shell">
+    <section class="hero shell" id="hero">
       <div class="hero-meta">
         <span>Dhaka, Bangladesh</span>
         <span>ACI PLC · MIS AI Team</span>
