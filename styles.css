@@ -937,7 +937,7 @@ button { font: inherit; }
 
 
 /* Hallmark × Scroll World · Flow/Veo cinematic intro
- * Desktop scroll-scrub; static mobile/reduced-motion fallback.
+ * 1080p scroll-scrub on desktop and mobile; static reduced-motion fallback.
  */
 .cinematic {
   position: relative;
@@ -1133,78 +1133,113 @@ button { font: inherit; }
 
 @media (max-width: 47.99rem), (hover: none) and (pointer: coarse) {
   .cinematic {
-    height: auto;
+    height: 520vh;
     border-bottom-width: 1px;
   }
 
   .cinematic-stage {
-    position: relative;
-    top: auto;
-    height: auto;
-    min-height: 0;
-    overflow: visible;
-    background: var(--paper);
+    position: sticky;
+    top: 4.5rem;
+    height: calc(100svh - 4.5rem);
+    min-height: 30rem;
+    overflow: hidden;
+    background: var(--paper-2);
   }
 
   .cinematic-media {
-    display: none;
+    display: block;
+  }
+
+  .cinematic-video,
+  .cinematic-poster {
+    object-fit: cover;
+    object-position: center center;
   }
 
   .cinematic-poster {
-    position: relative;
-    display: block;
+    position: absolute;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .cinematic-wash {
-    display: none;
+    height: 100%;
+    aspect-ratio: auto;
+    border-bottom: 0;
   }
 
   .cinematic-overlay {
-    height: auto;
-    display: block;
-    padding-block: var(--s8);
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding-block: var(--s4);
   }
 
   .cinematic-topline {
-    margin-bottom: var(--s6);
+    margin: 0;
+    gap: var(--s3);
+    align-items: flex-start;
+    font-size: .62rem;
+    line-height: 1.25;
   }
 
-  .cinematic-top-actions,
-  .cinematic-bottomline {
+  .cinematic-topline > span:first-child {
+    max-width: 11rem;
+  }
+
+  .cinematic-top-actions {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .cinematic-top-actions > span:first-child {
     display: none;
+  }
+
+  .cinematic-skip {
+    min-height: 2.5rem;
+    font-size: .64rem;
   }
 
   .cinematic-copy-stack {
-    width: 100%;
-    min-height: 0;
-    margin: 0;
+    width: min(100%, 31rem);
+    min-height: 16rem;
+    margin-bottom: var(--s4);
   }
 
   .cinematic-beat {
-    display: none;
-    position: relative;
-    inset: auto;
+    display: block;
+    position: absolute;
+    inset: auto 0 0 0;
     width: 100%;
     padding: var(--s4);
-    opacity: 1;
-    transform: none;
+    opacity: 0;
+    transform: translateY(14px);
   }
 
-  .cinematic-beat:first-child {
-    display: block;
+  .cinematic-beat.is-active {
+    opacity: .97;
+    transform: translateY(0);
   }
 
   .cinematic-beat h3 {
-    font-size: clamp(2.4rem, 12vw, 4rem);
+    font-size: clamp(2.15rem, 12vw, 3.8rem);
   }
 
-  .cinematic-beat:first-child p::after {
-    content: " The full desktop experience continues through applied AI, enterprise systems and public-scale software before handing off to the portfolio.";
+  .cinematic-beat p {
+    margin-top: var(--s3);
+    font-size: .9rem;
+    line-height: 1.42;
+  }
+
+  .cinematic-bottomline {
+    display: flex;
+    gap: var(--s3);
+    font-size: .62rem;
+  }
+
+  .cinematic-progress {
+    width: min(48vw, 13rem);
+  }
+
+  .cinematic-hint {
+    display: none;
   }
 }
 

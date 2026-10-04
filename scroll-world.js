@@ -8,20 +8,17 @@
   const wash = section.querySelector('.cinematic-wash');
   const beats = [...section.querySelectorAll('[data-cinematic-beat]')];
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const coarse = window.matchMedia('(hover: none) and (pointer: coarse)');
-  const small = window.matchMedia('(max-width: 47.99rem)');
 
-  const STATIC = () => reduced.matches || coarse.matches || small.matches;
+  const STATIC = () => reduced.matches;
   const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
-  const CLIP_DURATION = 8;
   const beatMap = [0, 1, 1, 2, 3, 4];
+  const clipDurations = [8, 8, 8, 8, 8, 7.541667];
 
   let activeClip = 0;
   let activeBeat = -1;
   let targetTime = 0;
   let ticking = false;
-  let primed = false;
-  let readyCount = 0;
+  let userPrimed = false;
 
   function setBeat(index) {
     if (index === activeBeat) return;
@@ -29,26 +26,68 @@
     beats.forEach((beat, i) => beat.classList.toggle('is-active', i === index));
   }
 
-  function setActiveClip(index) {
-    if (index === activeClip) return;
-    activeClip = index;
+  function primeVideo(video) {
+    if (!video || video.dataset.primed === 'true' || video.readyState < 1) return;
 
-    videos.forEach((video, i) => {
-      video.classList.toggle('is-active', i === index);
-      if (i !== index) video.pause();
-    });
+    const play = video.play();
+    if (play && typeof play.then === 'function') {
+      play.then(() => {
+        video.pause();
+        video.dataset.primed = 'true';
+        if (video === videos[activeClip]) seekActive();
+      }).catch(() => {});
+    }
+  }
+
+  function ensureLoaded(index, eager = false) {
+    const video = videos[index];
+    if (!video || video.dataset.loaded === 'true') return;
+
+    video.dataset.loaded = 'true';
+    video.preload = eager ? 'auto' : 'metadata';
+    video.src = video.dataset.src;
+    video.load();
+  }
+
+  function warmAround(index) {
+    ensureLoaded(index, true);
+    ensureLoaded(index - 1, false);
+    ensureLoaded(index + 1, true);
+
+    if (userPrimed) {
+      primeVideo(videos[index]);
+      primeVideo(videos[index + 1]);
+    }
+  }
+
+  function setActiveClip(index) {
+    if (index !== activeClip) {
+      activeClip = index;
+
+      videos.forEach((video, i) => {
+        video.classList.toggle('is-active', i === index);
+        if (i !== index) video.pause();
+      });
+    }
+
+    warmAround(index);
   }
 
   function seekActive() {
     if (STATIC()) return;
+
     const video = videos[activeClip];
     if (!video || video.readyState < 1 || video.seeking) return;
 
-    const safeTarget = clamp(targetTime, 0.001, Math.max(0.001, CLIP_DURATION - 0.035));
-    if (Math.abs(video.currentTime - safeTarget) < 0.035) return;
+    const duration = Number.isFinite(video.duration) && video.duration > 0
+      ? video.duration
+      : clipDurations[activeClip];
+
+    const safeTarget = clamp(targetTime, 0.001, Math.max(0.001, duration - 0.035));
+    if (Math.abs(video.currentTime - safeTarget) < 0.03) return;
 
     try {
-      if (typeof video.fastSeek === 'function' && Math.abs(video.currentTime - safeTarget) > 1.2) {
+      if (typeof video.fastSeek === 'function' && Math.abs(video.currentTime - safeTarget) > 1.15) {
         video.fastSeek(safeTarget);
       } else {
         video.currentTime = safeTarget;
@@ -75,7 +114,8 @@
       ? 1
       : total - clipIndex;
 
-    targetTime = localProgress * CLIP_DURATION;
+    targetTime = localProgress * clipDurations[clipIndex];
+
     setActiveClip(clipIndex);
     seekActive();
 
@@ -93,49 +133,42 @@
   }
 
   function prime() {
-    if (primed || STATIC()) return;
-    primed = true;
+    if (userPrimed || STATIC()) return;
+    userPrimed = true;
 
-    const video = videos[activeClip];
-    if (!video) return;
-
-    const play = video.play();
-    if (play && typeof play.then === 'function') {
-      play.then(() => {
-        video.pause();
-        seekActive();
-      }).catch(() => {});
-    }
+    primeVideo(videos[activeClip]);
+    primeVideo(videos[activeClip + 1]);
   }
 
-  function loadVideoAssets() {
-    if (STATIC()) {
-      setBeat(0);
-      return;
-    }
+  videos.forEach((video, index) => {
+    video.addEventListener('loadedmetadata', () => {
+      if (Number.isFinite(video.duration) && video.duration > 0) {
+        clipDurations[index] = video.duration;
+      }
 
-    videos.forEach((video, index) => {
-      video.preload = 'auto';
-      video.src = video.dataset.src;
+      if (userPrimed && (index === activeClip || index === activeClip + 1)) {
+        primeVideo(video);
+      }
 
-      video.addEventListener('loadeddata', () => {
-        video.pause();
-        readyCount += 1;
-        if (index === 0 || readyCount === videos.length) {
-          section.classList.add('is-ready');
-          requestRead();
-        }
-      }, { once: true });
-
-      video.addEventListener('seeked', () => {
-        if (index === activeClip) seekActive();
-      });
-
-      video.load();
+      requestRead();
     });
+
+    video.addEventListener('loadeddata', () => {
+      video.pause();
+      if (index === 0) section.classList.add('is-ready');
+      requestRead();
+    });
+
+    video.addEventListener('seeked', () => {
+      if (index === activeClip) seekActive();
+    });
+  });
+
+  if (!STATIC()) {
+    ensureLoaded(0, true);
+    ensureLoaded(1, true);
   }
 
-  loadVideoAssets();
   setBeat(0);
 
   window.addEventListener('scroll', requestRead, { passive: true });
@@ -145,7 +178,6 @@
   window.addEventListener('touchstart', prime, { passive: true, once: true });
 
   reduced.addEventListener('change', () => window.location.reload());
-  small.addEventListener('change', () => window.location.reload());
 
   requestRead();
 })();

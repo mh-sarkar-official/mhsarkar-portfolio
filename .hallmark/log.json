@@ -4,6 +4,14 @@
     "macrostructure": "Cinematic Scroll World → Portfolio Grid",
     "theme": "Grid",
     "theme_axes": "cool near-white / Archivo grotesk / ultramarine signal",
+    "enrichment": "1080p desktop + mobile scroll scrub",
+    "brief": "Restored 1920×1080 Flow footage, enabled real touch/mobile scrubbing, added lazy neighboring-clip loading and iOS-friendly muted video priming"
+  },
+  {
+    "date": "2026-10-04",
+    "macrostructure": "Cinematic Scroll World → Portfolio Grid",
+    "theme": "Grid",
+    "theme_axes": "cool near-white / Archivo grotesk / ultramarine signal",
     "enrichment": "segmented Flow/Veo scrub chain",
     "brief": "Finalized six individually optimized scroll-scrub clips, skip control, static mobile/reduced-motion fallback and Hallmark hero handoff"
   },

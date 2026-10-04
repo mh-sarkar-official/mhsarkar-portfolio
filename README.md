@@ -97,10 +97,10 @@ The runtime loads GSAP, ScrollTrigger and Flip from jsDelivr; the site remains f
 The portfolio opens with a Flow/Veo-generated cinematic sequence integrated using the core Scroll World technique.
 
 - Six generated clips are deployed as individual scroll-scrubbed H.264 segments.
-- The source renders are 1080p; the GitHub Pages web encodes are 640×360, 24fps, audio-free, fast-start, with a 6-frame GOP for responsive seeking.
+- The deployed scrub clips preserve the Flow source at 1920×1080, 24fps, audio-free, fast-start, with a 6-frame GOP for responsive seeking.
 - Segment boundaries use the actual Flow/Veo chain order, so the generated end/start compositions carry continuity between scenes.
-- Desktop scroll position drives the paused video playhead; it does not autoplay.
+- Desktop and mobile scroll position drive the paused video playhead; the cinematic does not autoplay.
 - Real HTML copy sits above the footage for crisp typography and accessibility.
 - The final segment fades to the Hallmark paper background and hands off to the existing real portrait/hero.
-- Small/coarse-pointer devices and `prefers-reduced-motion` receive a static poster presentation instead of scroll-jacked video.
+- Touch/mobile devices use the same scrubbed cinematic with center-focused 16:9 framing; `prefers-reduced-motion` still receives a static poster presentation.
 - The existing project grid, experience, stack, publication and contact sections remain unchanged below the cinematic.
