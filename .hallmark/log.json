@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-10-04",
+    "macrostructure": "Cinematic Scroll World → Portfolio Grid",
+    "theme": "Grid",
+    "theme_axes": "cool near-white / Archivo grotesk / ultramarine signal",
+    "enrichment": "Flow/Veo cinematic scroll-scrub with Hallmark hero handoff",
+    "brief": "Integrated six generated engineering clips as one optimized scroll-controlled cinematic with HTML story overlays, static mobile/reduced-motion fallback and seamless handoff to the existing portfolio"
+  },
+  {
     "date": "2026-10-03",
     "macrostructure": "Portfolio Grid",
     "theme": "Grid",

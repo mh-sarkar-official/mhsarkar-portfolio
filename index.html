@@ -31,6 +31,76 @@
   </header>
 
   <main id="top">
+    <section class="cinematic" id="cinematic" aria-labelledby="cinematic-title">
+      <h2 class="sr-only" id="cinematic-title">A cinematic journey through selected engineering work</h2>
+
+      <div class="cinematic-stage">
+        <img
+          class="cinematic-poster"
+          src="assets/scroll-world/portfolio-cinematic-poster.webp"
+          alt=""
+          width="1280"
+          height="720"
+          decoding="async"
+          fetchpriority="high"
+        >
+        <video
+          class="cinematic-video"
+          data-src="assets/scroll-world/portfolio-cinematic.mp4"
+          muted
+          playsinline
+          preload="none"
+          poster="assets/scroll-world/portfolio-cinematic-poster.webp"
+          aria-hidden="true"
+        ></video>
+        <div class="cinematic-wash" aria-hidden="true"></div>
+
+        <div class="cinematic-overlay shell">
+          <div class="cinematic-topline">
+            <span>scroll through the systems</span>
+            <span>mobile → ai → enterprise → public scale</span>
+          </div>
+
+          <div class="cinematic-copy-stack">
+            <article class="cinematic-beat is-active" data-cinematic-beat="0">
+              <span>01 / mobile engineering</span>
+              <h3>ship the product.</h3>
+              <p>Flutter, Android and iOS products connected to APIs, maps, cloud services, real-time systems and production delivery.</p>
+            </article>
+
+            <article class="cinematic-beat" data-cinematic-beat="1">
+              <span>02 / applied ai</span>
+              <h3>connect the intelligence.</h3>
+              <p>Multimodal chat, personalized learning, health intelligence, assessment workflows, OCR and recommendation systems.</p>
+            </article>
+
+            <article class="cinematic-beat" data-cinematic-beat="2">
+              <span>03 / enterprise systems</span>
+              <h3>work where data matters.</h3>
+              <p>Enterprise assistants, Oracle-connected workflows, NL2SQL, APIs and operational systems built around real business data.</p>
+            </article>
+
+            <article class="cinematic-beat" data-cinematic-beat="3">
+              <span>04 / public scale</span>
+              <h3>deliver for real users.</h3>
+              <p>Government-scale mobile software and digital verification alongside consumer and enterprise products.</p>
+            </article>
+
+            <article class="cinematic-beat cinematic-beat--handoff" data-cinematic-beat="4">
+              <span>05 / portfolio handoff</span>
+              <h3>the systems become the experience.</h3>
+              <p>Continue into the real projects, roles and engineering evidence behind the cinematic.</p>
+            </article>
+          </div>
+
+          <div class="cinematic-bottomline">
+            <div class="cinematic-progress" aria-hidden="true"><span></span></div>
+            <span class="cinematic-hint">scroll to move through the work ↓</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="hero shell">
       <div class="hero-meta">
         <span>Dhaka, Bangladesh</span>
@@ -434,5 +504,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
   <script src="script.js"></script>
+  <script src="scroll-world.js"></script>
 </body>
 </html>

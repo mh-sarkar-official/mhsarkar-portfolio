@@ -110,28 +110,22 @@ function initPortfolioMotion() {
         return;
       }
 
-      if (window.scrollY < 140) {
+      const playHeroTimeline = () => {
         const heroTimeline = gsap.timeline({
           defaults: { duration: 0.58, ease: 'power3.out' }
         });
 
         heroTimeline
-          .from('.site-header > *', {
-            y: -12,
-            autoAlpha: 0,
-            stagger: 0.055,
-            duration: 0.42
-          })
           .from('.hero-meta span', {
             y: 10,
             autoAlpha: 0,
             stagger: 0.055
-          }, '-=0.2')
+          })
           .from('.hero-copy h1', {
             y: 34,
             autoAlpha: 0,
             duration: 0.82
-          }, '-=0.22')
+          }, '-=0.2')
           .from('.hero-copy > p', {
             y: 16,
             autoAlpha: 0
@@ -155,6 +149,25 @@ function initPortfolioMotion() {
             stagger: 0.04,
             duration: 0.34
           }, '-=0.28');
+      };
+
+      if (document.querySelector('.cinematic')) {
+        ScrollTrigger.create({
+          trigger: '.hero',
+          start: 'top 88%',
+          once: true,
+          onEnter: playHeroTimeline
+        });
+      } else if (window.scrollY < 140) {
+        const headerTimeline = gsap.timeline({
+          defaults: { duration: 0.42, ease: 'power3.out' }
+        });
+        headerTimeline.from('.site-header > *', {
+          y: -12,
+          autoAlpha: 0,
+          stagger: 0.055
+        });
+        playHeroTimeline();
       }
 
       ScrollTrigger.batch('.project', {
